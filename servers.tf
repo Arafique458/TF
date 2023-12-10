@@ -84,3 +84,6 @@ resource "aws_instance" "payment" {
     Name = "payment"
   }
 }
+
+
+
