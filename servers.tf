@@ -55,7 +55,7 @@ variable "components" {
   }
 }
 
-resource "aws_instance" "frontend" {
+resource "aws_instance" "instance" {
   for_each = var.components
   ami = data.aws_ami.centos.image_id
   instance_type = each.value["instance_type"]
@@ -66,12 +66,13 @@ resource "aws_instance" "frontend" {
   }
 }
 # Aws route53 zone created
-resource "aws_route53_record" "frontend" {
+resource "aws_route53_record" "records" {
+  for_each = var.components
   zone_id = "Z088434732NM2WQFK5QS"
-  name    = "frontend-dev.devopsdude.cloud"
+  name    = "${each.value["name"]}-dev.devopsdude.cloud"
   type    = "A"
-  ttl     = 300
-  records = [aws_instance.frontend.private_ip]
+  ttl     = 30
+  records = [aws_instance.instance[each.value["name"]].private_ip]
 }
 
 #resource "aws_instance" "catalogue" {
