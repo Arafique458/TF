@@ -10,50 +10,7 @@ data "aws_security_group" "allow-all" {
 }
 
 ## allows us to keep the code dry shortening the instance type
-variable "components" {
-  default = {
-    frontend = {
-      name = "frontend"
-      instance_type = "t3.small"
-    }
-    mongodb = {
-      name = "mongodb"
-      instance_type = "t3.small"
-    }
-    catalogue = {
-      name = "catalogue"
-      instance_type = "t3.micro"
-    }
-    cart = {
-      name = "cart"
-      instance_type = "t3.micro"
-    }
-    user = {
-      name = "user"
-      instance_type = "t3.small"
-    }
-    redis = {
-      name = "redis"
-      instance_type = "t3.small"
-    }
-    shipping = {
-      name = "shipping"
-      instance_type = "t3.medium"
-    }
-    mysql = {
-      name = "mysql"
-      instance_type = "t3.small"
-    }
-    rabbitmq = {
-      name = "rabbitmq"
-      instance_type = "t3.small"
-    }
-    payment = {
-      name = "payment"
-      instance_type = "t3.small"
-    }
-  }
-}
+variable "components" {}
 
 resource "aws_instance" "instance" {
   for_each = var.components
