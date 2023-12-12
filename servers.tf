@@ -9,9 +9,6 @@ data "aws_security_group" "allow-all" {
   name = "allow-all"
 }
 
-## allows us to keep the code dry shortening the instance type
-variable "components" {}
-
 resource "aws_instance" "instance" {
   for_each = var.components
   ami = data.aws_ami.centos.image_id
