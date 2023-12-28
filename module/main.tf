@@ -26,7 +26,7 @@ resource "null_resource" "provisioner" {
 }
 # Aws route53 zone created
 resource "aws_route53_record" "records" {
-  zone_id = "Z088434732NM2WQFK5QS"
+  zone_id = "Z00656475HL25WDFMPZ4"
   name    = "${var.components_name}-dev.devopsdude.cloud"
   type    = "A"
   ttl     = 30
